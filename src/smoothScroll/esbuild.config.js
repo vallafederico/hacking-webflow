@@ -1,14 +1,12 @@
 import { serve, build } from "esbuild";
 
-const name = "smooth-scroll";
-
 /* - Setup */
 const env = process.env.NODE_ENV;
 const production = env === "production";
 
 const FILES = {
   entryPoints: {
-    name: "index.js",
+    "smooth-scroll": "index.js",
   },
   outdir: "../../dist",
 };
