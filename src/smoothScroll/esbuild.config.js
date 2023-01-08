@@ -1,28 +1,23 @@
 import { serve, build } from "esbuild";
-// import { glsl } from "esbuild-plugin-glsl";
+
+const name = "smooth-scroll";
 
 /* - Setup */
 const env = process.env.NODE_ENV;
 const production = env === "production";
 
 const FILES = {
-  entry: ["index.js"],
-  out: "../dist",
+  entryPoints: {
+    name: "index.js",
+  },
+  outdir: "../../dist",
 };
 
 const SETTINGS = {
   bundle: true,
+  minify: production,
   sourcemap: !production,
-  // loader: { ".png": "dataurl" },
-  // loader: { ".webp": "dataurl" },
 };
-
-/* -- Plugins */
-// const plugins = [
-//   glsl({
-//     minify: production,
-//   }),
-// ];
 
 /* --- DEVELOPMENT */
 function serveFile() {
@@ -31,10 +26,9 @@ function serveFile() {
       port: 8000,
     },
     {
-      entryPoints: FILES.entry,
+      entryPoints: ["index.js"],
       outfile: "dev.js",
       ...SETTINGS,
-      // plugins,
     }
   ).then((server) => {
     console.log("http://localhost:8000/dev.js");
@@ -44,10 +38,8 @@ function serveFile() {
 /* --- BUILD */
 function buildJs() {
   build({
-    entryPoints: FILES.entry,
-    outdir: FILES.out,
+    ...FILES,
     ...SETTINGS,
-    // plugins
   }).then((stats) => {
     console.log(stats);
   });
