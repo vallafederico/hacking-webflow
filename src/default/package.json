@@ -1,0 +1,19 @@
+{
+  "name": "smooth-scroll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=dev node esbuild.config.js",
+    "build": "NODE_ENV=production node esbuild.config.js",
+    "flow": "NODE_ENV=flow node esbuild.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.16.15"
+  },
+  "dependencies": {}
+}
