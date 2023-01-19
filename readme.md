@@ -9,4 +9,5 @@ Via Lenis, webflow adapted
 #### StaggerText
 
 The most used and abused text animation
+
 [Documentation](/src/staggerText/readme.md)
