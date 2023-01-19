@@ -4,7 +4,7 @@ Tools and utilities that I coded once and don't want to do again, in tiny precom
 
 [Portfolio](https://federic.ooo/) — [Twitter](https://federic.ooo/s/twitter) — [Cloneables](https://webflow.com/@vallafederico)
 
-Made by 👀
+👀
 
 ## Index
 
