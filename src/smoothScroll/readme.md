@@ -19,7 +19,7 @@ Above script tag in `before /body` Webflow tag.
 #### Params
 
 | Attribute | Values | Default | \*  | Description |
-| --------- | ------ | ------- | --- | ----------- |
+| :-------- | :----- | :------ | :-- | :---------- |
 | -         | -      | --      | \*  | -           |
 
 <!-- #### Long Description -->
