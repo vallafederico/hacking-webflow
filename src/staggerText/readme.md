@@ -22,3 +22,11 @@ Automatically adds the needed CSS.
 | data-obs-m      | {NUMBER}px / {NUMBER}%         | 10px    |     | Intersection Observer Margin   |
 
 <!-- #### Long Description -->
+
+---
+
+### CHANGELOG
+
+##### 00
+
+Test version, probably unstable and a bit messed up.
