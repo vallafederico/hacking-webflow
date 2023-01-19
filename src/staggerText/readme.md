@@ -4,7 +4,18 @@ Used and abused text stagger animation. Still cool maybe.
 
 [Cloneable](/)
 
+Last Stable Version
+
+```html
+<script
+  defer
+  src="https://cdn.jsdelivr.net/gh/vallafederico/hacking-webflow@master/dist/text-split.00.js"
+></script>
+```
+
 ## How to
+
+Above script tag in `before /body` Webflow tag.
 
 The implementation needs at least one attribute `data-a-split` to work.
 Automatically adds the needed CSS.
