@@ -4,8 +4,13 @@ import { Observe } from "../util/observe.js";
 
 //
 
+// console.log("hello");
+
+// console.log(Tween);
+
 class TextAnimation extends Observe {
   constructor(item) {
+    // console.log(item.dataset);
     // define config
     const config = {
       // observer config
@@ -20,6 +25,7 @@ class TextAnimation extends Observe {
       aDuration: item.dataset.aDuration ?? 1.9,
       aEach: item.dataset.aEach ?? 0.05,
       aDelay: item.dataset.aDelay ?? 0,
+      aEase: item.dataset.aEase ?? "expo.out",
     };
 
     super({ element: item, config });
@@ -37,7 +43,7 @@ class TextAnimation extends Observe {
   }
 
   animateIn() {
-    console.log("in");
+    // console.log("in");
 
     this.animation?.kill();
     this.animation = Tween.to(this.animated, {
@@ -46,12 +52,12 @@ class TextAnimation extends Observe {
       stagger: {
         each: this.config.aStagger,
       },
-      ease: "expo.out",
+      ease: this.config.aEase,
     });
   }
 
   animateOut() {
-    console.log("out");
+    // console.log("out");
 
     this.animation?.kill();
     this.animation = Tween.set(this.animated, { y: this.a.y });
@@ -99,7 +105,7 @@ new StaggerText("data-a-split");
 
 // ------------------------------ Helpers
 function returnSplit(el) {
-  console.log(el.dataset.aSplit);
+  // console.log(el.dataset.aSplit);
   switch (el.dataset.aSplit) {
     case "char":
       return splitChars(splitWords(el));
