@@ -2,31 +2,25 @@ import Tween from "gsap";
 import SplitType from "split-type";
 import { Observe } from "../util/observe.js";
 
-//
-
-// console.log("hello");
-
-// console.log(Tween);
-
 class TextAnimation extends Observe {
   constructor(item) {
-    // console.log(item.dataset);
     // define config
     const config = {
-      // observer config
-      root: null,
-      margin: item.dataset.obsM ?? "10px",
-      threshold: +item.dataset.obsT ?? 0,
+      // -- observer config
+      // root: null,
+      margin: item.dataset.obsM || "10px",
+      threshold: +item.dataset.obsT || 0,
       once: item.dataset.obsOnce === "true" ? true : false,
-      // text split config
-      aSplit: item.dataset.aSplit ?? "words",
-      // aOnce: item.dataset.aOnce ?? false,
-      aStagger: item.dataset.aStagger ?? 0.05,
-      aDuration: item.dataset.aDuration ?? 1.9,
-      aEach: item.dataset.aEach ?? 0.05,
-      aDelay: item.dataset.aDelay ?? 0,
+      // -- text split config
+      aSplit: item.dataset.aSplit || "words",
+      aDuration: +item.dataset.aDuration ?? 1.9,
+      aEach: +item.dataset.aEach ?? 0.05,
+      aDelay: +item.dataset.aDelay ?? 0,
       aEase: item.dataset.aEase ?? "expo.out",
+      aFrom: item.dataset.aFrom ?? "start",
     };
+
+    console.log("CONFIG: ", config);
 
     super({ element: item, config });
     this.config = config;
@@ -43,22 +37,20 @@ class TextAnimation extends Observe {
   }
 
   animateIn() {
-    // console.log("in");
-
     this.animation?.kill();
     this.animation = Tween.to(this.animated, {
       y: "0%",
+      delay: this.config.aDelay,
       duration: this.config.aDuration,
       stagger: {
-        each: this.config.aStagger,
+        each: this.config.aEach,
+        from: this.config.aFrom,
       },
       ease: this.config.aEase,
     });
   }
 
   animateOut() {
-    // console.log("out");
-
     this.animation?.kill();
     this.animation = Tween.set(this.animated, { y: this.a.y });
   }
@@ -84,14 +76,8 @@ class StaggerText {
     const style = document.createElement("style");
 
     const styleString = `
-      [${this.selector}] {
-      }
-
        [${this.selector}] > div {
         overflow: hidden;
-      }
-
-       [${this.selector}] > div > div {
       }
     `;
 
@@ -100,12 +86,13 @@ class StaggerText {
   }
 }
 
-// ------------------------------ init
-new StaggerText("data-a-split");
+/**
+ * Initialisation
+ */
+window.staggerText = new StaggerText("data-a-split");
 
 // ------------------------------ Helpers
 function returnSplit(el) {
-  // console.log(el.dataset.aSplit);
   switch (el.dataset.aSplit) {
     case "char":
       return splitChars(splitWords(el));

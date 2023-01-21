@@ -1,6 +1,6 @@
 # Smooth Scroll
 
-PENDING DOCS :D
+## PENDING DOCS :D, the thing works though
 
 Lenis implementation optimised for Webflow usage.
 

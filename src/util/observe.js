@@ -1,12 +1,12 @@
-import Emitter from "tiny-emitter";
+// import Emitter from "tiny-emitter";
 
-export class Observe extends Emitter {
+export class Observe {
   constructor({ element, config, addClass }) {
-    super();
+    // super();
     this.element = element;
 
     this.config = {
-      root: config?.root || null,
+      root: null,
       margin: config?.margin || "10px",
       threshold: config?.threshold || 0,
       once: config.once,
@@ -27,7 +27,6 @@ export class Observe extends Emitter {
         });
       },
       {
-        // root: this.config.root,
         rootMargin: this.config.margin,
         threshold: this.config.threshold,
       }
@@ -42,7 +41,6 @@ export class Observe extends Emitter {
         });
       },
       {
-        // root: document.querySelector('#scrollArea'),
         rootMargin: "000px",
         threshold: 0,
       }
@@ -60,19 +58,17 @@ export class Observe extends Emitter {
   }
 
   isIn() {
-    // console.log("in");
     if (this.addClass) this.element.classList.add(this.addClass);
-    this.emit("IN");
+    // this.emit("IN");
 
     if (this.config.once) this.stop();
     this.animateIn();
   }
 
   isOut() {
-    // console.log("out");
     if (this.addClass) this.element.classList.remove(this.addClass);
 
-    this.emit("OUT");
+    // this.emit("OUT");
     this.animateOut();
   }
 }
