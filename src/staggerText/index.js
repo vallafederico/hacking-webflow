@@ -12,15 +12,15 @@ class TextAnimation extends Observe {
       threshold: +item.dataset.obsT || 0,
       once: item.dataset.obsOnce === "true" ? true : false,
       // -- text split config
-      aSplit: item.dataset.aSplit || "words",
-      aDuration: +item.dataset.aDuration ?? 1.9,
-      aEach: +item.dataset.aEach ?? 0.05,
-      aDelay: +item.dataset.aDelay ?? 0,
+      aSplit: item.dataset.aSplit || "word",
+      aDuration: item.dataset.aDuration ?? 1.9,
+      aEach: item.dataset.aEach ?? 0.05,
+      aDelay: item.dataset.aDelay ?? 0,
       aEase: item.dataset.aEase ?? "expo.out",
       aFrom: item.dataset.aFrom ?? "start",
     };
 
-    console.log("CONFIG: ", config);
+    // console.log("CONFIG: ", config);
 
     super({ element: item, config });
     this.config = config;
