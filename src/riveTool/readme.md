@@ -2,14 +2,17 @@
 
 Utility for [Rive](https://rive.app/) in Webflow.
 
-[**Cloneable**](/)
+[**Cloneable**](https://webflow.com/made-in-webflow/website/rive-tool)
 
 _Credits & Tools: [Rive.app](https://rive.app/)_
 
 #### Last Stable Version
 
 ```html
-<script defer src="..."></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/gh/vallafederico/hacking-webflow@master/dist/rive-tool.01.js"
+></script>
 ```
 
 ## How to

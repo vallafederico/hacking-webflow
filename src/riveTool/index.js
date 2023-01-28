@@ -52,7 +52,6 @@ function injectCSS() {
 
   const styleString = `
        [data-rive] > canvas {
-        // border: 1px solid red;
         width: 100%;
         height: 100%;
         box-sizing: border-box;
