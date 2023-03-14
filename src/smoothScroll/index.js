@@ -1,24 +1,40 @@
+import Lenis from "@studio-freight/lenis";
+
 class Scroll extends Lenis {
   constructor() {
     super({
       duration: 1.5,
       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
-      direction: "vertical",
-      smooth: true,
+      orientation: "vertical",
+      smoothWheel: true,
       smoothTouch: false,
       touchMultiplier: 1.5,
     });
 
-    this.time = 0;
+    this.injectCSS();
+
     this.isActive = true;
     this.init();
   }
 
   init() {
     this.config();
+    this.useAnchors();
     this.render();
-    this.handleEditorView();
   }
+
+  useAnchors() {
+    // anchor links
+    [...document.querySelectorAll("[data-scrolllink]")].forEach((item) => {
+      const target = document.querySelector(item.dataset.scrolllink);
+      if (target)
+        item.addEventListener("click", () => {
+          this.scrollTo(target);
+        });
+    });
+  }
+
+  //   scrollToSection() {}
 
   config() {
     // allow scrolling on overflow elements
@@ -68,24 +84,16 @@ class Scroll extends Lenis {
         };
       });
     }
-
-    // anchor links
-    const anchor = [...document.querySelectorAll("[data-scrolllink]")];
-    if (anchor.length > 0) {
-      anchor.forEach((item) => {
-        const id = parseFloat(item.dataset.scrolllink);
-        const target = document.querySelector(`[data-scrolltarget="${id}"]`);
-        if (target) {
-          //console.log(id, target);
-          item.onclick = () => this.scrollTo(target);
-        }
-      });
-    }
   }
 
-  render() {
-    this.raf((this.time += 10));
+  render(time) {
+    this.raf(time);
     window.requestAnimationFrame(this.render.bind(this));
+    this.renderWebflow(time);
+  }
+
+  renderWebflow() {
+    // empty function to access the raf from webflow
   }
 
   /* ---- */
@@ -110,6 +118,33 @@ class Scroll extends Lenis {
     const observer = new MutationObserver(callback);
     observer.observe(html, config);
   }
+
+  injectCSS() {
+    const style = document.createElement("style");
+
+    const styleString = `
+    .lenis.lenis-smooth {
+        scroll-behavior: auto;  
+    }
+    html.lenis {
+        height: auto;
+    }
+    `;
+
+    style.textContent = styleString;
+    document.head.append(style);
+  }
 }
 
 window.SmoothScroll = new Scroll();
+
+/*
+TODO
+- add lenis listenable events from wf DOM
+- add configurable external interface
+
+*/
+
+function readControls(attribute, key) {}
+
+readControls();

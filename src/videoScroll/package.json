@@ -13,9 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.17.11"
+    "esbuild": "^0.16.15"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.0"
+    "scrolly-video": "^0.0.10"
   }
 }
