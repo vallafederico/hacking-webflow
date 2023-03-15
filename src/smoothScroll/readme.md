@@ -38,7 +38,7 @@ Is exposed to the window object as `window.SmoothScroll. Here's a list of functi
 | start() |             |           |
 | stop()  |             |           |
 
-#### Params
+### Params
 
 | Attribute            | Values                               | Default                                          | \*      | Description                                            |
 | :------------------- | :----------------------------------- | :----------------------------------------------- | :------ | :----------------------------------------------------- |
