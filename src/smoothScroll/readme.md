@@ -31,7 +31,12 @@ html.lenis {
 }
 ```
 
-Is exposed to the window object as `window.SmoothScroll`
+Is exposed to the window object as `window.SmoothScroll. Here's a list of functions availabe on the object
+
+| Name    | Description | something |
+| :------ | :---------- | :-------- |
+| start() |             |           |
+| stop()  |             |           |
 
 #### Params
 
@@ -76,13 +81,15 @@ If set to `true`, you can use the following attributes to enable controls.
 
 #### data-useAnchor
 
+Attaches a scroll anchor link for the element that has it. As a selector you can use anything (an ID `#` will probably be best)
+
 | Attribute       | Value        | Description |
 | :-------------- | :----------- | :---------- |
 | data-scrolllink | `{SELECTOR}` |             |
 
 #### data-useRaf
 
-Exposes `renderWebflow()`: a Request Animation Frame function on the webflow side.
+If set to `true`, exposes `renderWebflow()`: a Request Animation Frame function on the webflow side.
 
 And activates the following params
 
@@ -100,6 +107,8 @@ window.SmoothScroll.renderWebflow = () => {
   const { y, speed, percent, direction } = window.SmoothScroll;
   // the code you want to loop every frame
   // you can use the above parameters as variables
+  // ...
+  // ...
   // ...
 };
 ```
