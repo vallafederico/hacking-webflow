@@ -57,17 +57,28 @@ You can get more from [easings.net](https://easings.net/)
 
 #### data-useOverscroll
 
-[data-scroll="overscroll"]
+If set to `true`, you can use the following attribute to automatically solve the overscroll behaviour on elements that shouldn't scroll with the reast of the page.
+
+```html
+data-scroll="overscroll"
+```
 
 #### data-useControls
 
-[data-scroll="stop"]
-[data-scroll="start"]
-[data-scroll="toggle"]
+If set to `true`, you can use the following attributes to enable controls.
+**Stop** to have a stop trigger, **Start** to start the scroll, **Toggle** to toggle play and pause
+
+| Attribute   | Value  | Descripotion |
+| :---------- | :----- | :----------- |
+| data-scroll | stop   |              |
+| data-scroll | start  |              |
+| data-scroll | toggle |              |
 
 #### data-useAnchor
 
-[data-scrolllink]
+| Attribute       | Value        | Descripotion |
+| :-------------- | :----------- | :----------- |
+| data-scrolllink | `{SELECTOR}` |              |
 
 #### data-useRaf
 
