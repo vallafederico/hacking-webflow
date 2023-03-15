@@ -5,8 +5,10 @@ function isArrowFunction(str) {
 }
 
 export function evalConfig(selector, defaults = {}) {
-  const data = document.querySelector(selector).dataset;
-  const out = { ...data };
+  const data = document.querySelector(selector);
+  if (!data) return { ...defaults };
+
+  const out = { ...data.dataset };
 
   for (const item in out) {
     const value = out[item];
