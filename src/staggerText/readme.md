@@ -41,7 +41,7 @@ Needed CSS is added automatically, namely:
 | data-a-delay     | `{NUMBER}` float or int (s)                                  | 0       |          -- | Animation delay                |
 | data-a-ease      | `{STRING}` from [gsap](https://greensock.com/docs/v2/Easing) | 0       |          -- | Animation delay                |
 | data-a-from      | `{STRING}` "start" / "center" / "end"                        | start   |          -- | Stagger starting point         |
-| data-obs-once    | true / false                                                 | false   |          -- | Play once every time           |
+| data-obs-once    | `{BOLEAN}` true / false                                      | false   |          -- | Play once every time           |
 | data-obs-t       | `{NUMBER}` float or int  (0 to 1)                            | .2      |          -- | Intersection Observer Treshold |
 | data-obs-m       | `{NUMBER}` px / `{NUMBER}` %                                 | 10px    |          -- | Intersection Observer Margin   |
 
