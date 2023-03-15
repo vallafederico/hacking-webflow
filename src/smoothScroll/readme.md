@@ -59,26 +59,26 @@ You can get more from [easings.net](https://easings.net/)
 
 If set to `true`, you can use the following attribute to automatically solve the overscroll behaviour on elements that shouldn't scroll with the reast of the page.
 
-```html
-data-scroll="overscroll"
-```
+| Attribute   | Value      | Description |
+| :---------- | :--------- | :---------- |
+| data-scroll | overscroll |             |
 
 #### data-useControls
 
 If set to `true`, you can use the following attributes to enable controls.
 **Stop** to have a stop trigger, **Start** to start the scroll, **Toggle** to toggle play and pause
 
-| Attribute   | Value  | Descripotion |
-| :---------- | :----- | :----------- |
-| data-scroll | stop   |              |
-| data-scroll | start  |              |
-| data-scroll | toggle |              |
+| Attribute   | Value  | Description |
+| :---------- | :----- | :---------- |
+| data-scroll | stop   |             |
+| data-scroll | start  |             |
+| data-scroll | toggle |             |
 
 #### data-useAnchor
 
-| Attribute       | Value        | Descripotion |
-| :-------------- | :----------- | :----------- |
-| data-scrolllink | `{SELECTOR}` |              |
+| Attribute       | Value        | Description |
+| :-------------- | :----------- | :---------- |
+| data-scrolllink | `{SELECTOR}` |             |
 
 #### data-useRaf
 
@@ -86,12 +86,22 @@ Exposes `renderWebflow()`: a Request Animation Frame function on the webflow sid
 
 And activates the following params
 
+| Value     | Description                                                                           |
+| :-------- | ------------------------------------------------------------------------------------- |
+| y         | Returns the current Y value in the page                                               |
+| speed     | Returns a value for the scroll speed, positive or negative depending on the direction |
+| percent   | Returna a value, from 0 to 1, based on how much of the page is scrolled               |
+| direction | Returns either `1` or `-1`indicating the direction (up or down / right and left)      |
+
+You can use it like this
+
 ```js
-this.y = scroll || 0;
-this.max = limit || window.innerHeight;
-this.speed = velocity || 0;
-this.percent = progress || 0;
-this.direction = 0;
+window.SmoothScroll.renderWebflow = () => {
+  const { y, speed, percent, direction } = window.SmoothScroll;
+  // the code you want to loop every frame
+  // you can use the above parameters as variables
+  // ...
+};
 ```
 
 ### Configuration Example
