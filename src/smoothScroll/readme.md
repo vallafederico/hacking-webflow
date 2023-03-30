@@ -121,6 +121,7 @@ Attach config parameters to the script tag (example below)
 <script
   data-id-scroll
   data-autoinit="true"
+  data-wrapper="window"
   data-duration="1"
   data-orientation="vertical"
   data-smoothWheel="true"

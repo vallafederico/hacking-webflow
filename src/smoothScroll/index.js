@@ -118,6 +118,7 @@ class Scroll extends Lenis {
 /*  --- Init */
 const params = evalConfig("[data-id-scroll]", {
   // defaults
+  wrapper: window,
   duration: 1.5,
   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
   orientation: "vertical",
