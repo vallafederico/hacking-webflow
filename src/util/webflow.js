@@ -1,23 +1,10 @@
-export function handleEditor(onEditorView) {
-  const html = document.documentElement;
-  const config = { attributes: true, childList: false, subtree: false };
-
-  const callback = (mutationList) => {
-    for (const mutation of mutationList) {
-      if (mutation.type === "attributes") {
-        [
-          ...document.querySelectorAll(
-            ".w-editor-bem-EditSiteButton , .w-editor-bem-EditorMainMenu"
-          ),
-        ].forEach((item) => {
-          item.onclick = () => {
-            onEditorView();
-          };
-        });
-      }
-    }
-  };
-
-  const observer = new MutationObserver(callback);
-  observer.observe(html, config);
+export function handleEditor(onEditorView = null) {
+  // console.log(Webflow.env("editor"));
+  if (Webflow.env("editor") !== undefined) {
+    if (onEditorView !== null) onEditorView();
+    console.log("Webflow Editor View");
+    return true;
+  } else {
+    return false;
+  }
 }

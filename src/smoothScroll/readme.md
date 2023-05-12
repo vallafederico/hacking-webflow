@@ -31,7 +31,7 @@ html.lenis {
 }
 ```
 
-Is exposed to the window object as `window.SmoothScroll. Here's a list of functions availabe on the object
+Is exposed to the window object as `window.SScroll`. Methods available are exposed through it under the `call` property, that you can access under `window.SScroll.call.{METHOD_NAME}()`
 
 | Name    | Description | something |
 | :------ | :---------- | :-------- |
@@ -40,19 +40,20 @@ Is exposed to the window object as `window.SmoothScroll. Here's a list of functi
 
 ### Params
 
-| Attribute            | Values                               | Default                                          | \*      | Description                                            |
-| :------------------- | :----------------------------------- | :----------------------------------------------- | :------ | :----------------------------------------------------- |
-| **data-id-scroll**   |                                      |                                                  | **YEP** |                                                        |
-| data-duration        | `{NUMBER}` float or int (s)          | 1                                                |         | Duration                                               |
-| data-easing          | `{FUNCTION}` (as STRING)             | (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 \* t)) |         | Easing Function                                        |
-| data-orientation     | `{STRING}` "vertical" / "horizontal" | "vertical"                                       |         | Direction                                              |
-| data-smoothWheel     | `{BOLEAN}` true / false              | true                                             |         | Wheel Smoothing                                        |
-| data-smoothTouch     | `{BOLEAN}` true / false              | false                                            |         | Touch Smoothing                                        |
-| data-touchMultiplier | `{NUMBER}` float or int (s)          | 1.5                                              |         | Touch Multiplier                                       |
-| data-useOverscroll   | `{BOLEAN}` true / false              | true                                             |         | Use overscroll selectors                               |
-| data-useControls     | `{BOLEAN}` true / false              | true                                             |         | .                                                      |
-| data-useAnchor       | `{BOLEAN}` true / false              | true                                             |         | Use anchor point                                       |
-| data-useRaf          | `{BOLEAN}` true / false              | true                                             |         | Expose RAF function to webflow and activate parameters |
+| Attribute            | Values                               | Default                                          | \*      | Description                                |
+| :------------------- | :----------------------------------- | :----------------------------------------------- | :------ | :----------------------------------------- |
+| **data-id-scroll**   |                                      |                                                  | **YEP** |                                            |
+| data-duration        | `{NUMBER}` float or int (s)          | 1                                                |         | Duration                                   |
+| data-easing          | `{FUNCTION}` (as STRING)             | (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 \* t)) |         | Easing Function                            |
+| data-orientation     | `{STRING}` "vertical" / "horizontal" | "vertical"                                       |         | Direction                                  |
+| data-smoothWheel     | `{BOLEAN}` true / false              | true                                             |         | Wheel Smoothing                            |
+| data-smoothTouch     | `{BOLEAN}` true / false              | false                                            |         | Touch Smoothing                            |
+| data-touchMultiplier | `{NUMBER}` float or int (s)          | 1.5                                              |         | Touch Multiplier                           |
+| data-infinite        | `{BOLEAN}` true / false              | true                                             |         | Use Infinite Scroll                        |
+| data-useOverscroll   | `{BOLEAN}` true / false              | true                                             |         | Use overscroll selectors                   |
+| data-useControls     | `{BOLEAN}` true / false              | true                                             |         | .                                          |
+| data-useAnchor       | `{BOLEAN}` true / false              | true                                             |         | Use anchor point                           |
+| data-useRaf          | `{BOLEAN}` true / false              | true                                             |         | Activate parameters to be read from window |
 
 <!-- #### Long Description -->
 
@@ -87,32 +88,6 @@ Attaches a scroll anchor link for the element that has it. As a selector you can
 | :-------------- | :----------- | :---------- |
 | data-scrolllink | `{SELECTOR}` |             |
 
-#### data-useRaf
-
-If set to `true`, exposes `renderWebflow()`: a Request Animation Frame function on the webflow side.
-
-And activates the following params
-
-| Value     | Description                                                                           |
-| :-------- | ------------------------------------------------------------------------------------- |
-| y         | Returns the current Y value in the page                                               |
-| speed     | Returns a value for the scroll speed, positive or negative depending on the direction |
-| percent   | Returna a value, from 0 to 1, based on how much of the page is scrolled               |
-| direction | Returns either `1` or `-1`indicating the direction (up or down / right and left)      |
-
-You can use it like this
-
-```js
-window.SmoothScroll.renderWebflow = () => {
-  const { y, speed, percent, direction } = window.SmoothScroll;
-  // the code you want to loop every frame
-  // you can use the above parameters as variables
-  // ...
-  // ...
-  // ...
-};
-```
-
 ### Configuration Example
 
 Attach config parameters to the script tag (example below)
@@ -141,6 +116,6 @@ Attach config parameters to the script tag (example below)
 
 # CHANGELOG
 
-| Version # | Changes                                              |
-| --------- | ---------------------------------------------------- |
-| #00       | Test version, probably unstable and a bit messed up. |
+| Version # | Changes            |
+| --------- | ------------------ |
+| #00       | First Version. WIP |

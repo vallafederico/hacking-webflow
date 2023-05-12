@@ -29,13 +29,18 @@ class Scroll extends Lenis {
     this.params = params;
     this.isActive = true;
     this.init();
+
+    // -- interface
+    this.call = {
+      stop: () => this.stop(),
+      start: () => this.start(),
+    };
   }
 
   init() {
     this.config();
     this.render();
 
-    // console.log(this.params.useRaf);
     if (this.params.useRaf) {
       this.y = window.scrollY;
       this.max = window.innerHeight;
@@ -53,9 +58,14 @@ class Scroll extends Lenis {
       [...document.querySelectorAll("[data-scrolllink]")].forEach((item) => {
         const target = document.querySelector(item.dataset.scrolllink);
         if (target)
-          item.addEventListener("click", () => {
-            this.scrollTo(target);
-          });
+          item.addEventListener(
+            "click",
+            (e) => {
+              e.preventDefault();
+              this.scrollTo(target);
+            },
+            { passive: false }
+          );
       });
     if (this.params.useOverscroll)
       [...document.querySelectorAll('[data-scroll="overscroll"]')].forEach(
@@ -98,7 +108,7 @@ class Scroll extends Lenis {
   render(time) {
     this.raf(time);
     window.requestAnimationFrame(this.render.bind(this));
-    if (this.params.useRaf) this.renderWebflow(time);
+    // if (this.params.useRaf) this.renderWebflow(time);
   }
 
   outScroll({ scroll, limit, velocity, progress, direction }) {
@@ -110,9 +120,7 @@ class Scroll extends Lenis {
     this.direction = 0;
   }
 
-  renderWebflow(t) {
-    // empty function to access the raf from webflow
-  }
+  // renderWebflow(time) {}
 }
 
 /*  --- Init */
@@ -125,6 +133,7 @@ const params = evalConfig("[data-id-scroll]", {
   smoothWheel: true,
   smoothTouch: false,
   touchMultiplier: 1.5,
+  infinite: false,
   // internal
   useOverscroll: true,
   useControls: true,
@@ -132,4 +141,5 @@ const params = evalConfig("[data-id-scroll]", {
   useRaf: true,
 });
 
-window.SmoothScroll = new Scroll(params);
+window.SScroll = new Scroll(params);
+// window.SScroll.renderWebflow = (time) => {};
