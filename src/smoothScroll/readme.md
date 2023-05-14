@@ -33,10 +33,10 @@ html.lenis {
 
 Is exposed to the window object as `window.SScroll`. Methods available are exposed through it under the `call` property, that you can access under `window.SScroll.call.{METHOD_NAME}()`
 
-| Name    | Description | something |
-| :------ | :---------- | :-------- |
-| start() |             |           |
-| stop()  |             |           |
+| Name                        | Description       |
+| :-------------------------- | :---------------- |
+| window.SScroll.call.start() | Starts the scroll |
+| window.SScroll.call.stop()  | Stops the scroll  |
 
 ### Params
 
@@ -87,6 +87,23 @@ Attaches a scroll anchor link for the element that has it. As a selector you can
 | Attribute       | Value        | Description |
 | :-------------- | :----------- | :---------- |
 | data-scrolllink | `{SELECTOR}` |             |
+
+#### data-useRaf
+
+Exposes the scroll event to be listened in the window object like in the example below. Attached to `e.detail` you can find all scroll parameters like
+
+| Value             | Description                       |
+| :---------------- | :-------------------------------- |
+| `.detail.y`       | Y position in the page            |
+| `.detail.max`     | Maximum scroll container height   |
+| `.detail.speed`   | Scroll Speed                      |
+| `.detail.percent` | 0 - 1 value of scroll in the page |
+
+```js
+window.addEventListener("sscroll", (e) => {
+  console.log(e.detail);
+});
+```
 
 ### Configuration Example
 

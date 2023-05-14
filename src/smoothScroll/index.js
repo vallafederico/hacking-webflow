@@ -26,6 +26,7 @@ class Scroll extends Lenis {
       params,
     });
 
+    // console.log("hi");
     this.params = params;
     this.isActive = true;
     this.init();
@@ -67,6 +68,7 @@ class Scroll extends Lenis {
             { passive: false }
           );
       });
+
     if (this.params.useOverscroll)
       [...document.querySelectorAll('[data-scroll="overscroll"]')].forEach(
         (item) => item.setAttribute("onwheel", "event.stopPropagation()")
@@ -108,7 +110,7 @@ class Scroll extends Lenis {
   render(time) {
     this.raf(time);
     window.requestAnimationFrame(this.render.bind(this));
-    // if (this.params.useRaf) this.renderWebflow(time);
+    // if (this.params.useRaf) this.call.onRender(time);
   }
 
   outScroll({ scroll, limit, velocity, progress, direction }) {
@@ -118,9 +120,23 @@ class Scroll extends Lenis {
     this.speed = velocity || 0;
     this.percent = progress || 0;
     this.direction = 0;
+
+    if (this.params.useRaf) {
+      window.dispatchEvent(
+        new CustomEvent("sscroll", {
+          detail: {
+            y: this.y,
+            max: this.max,
+            speed: this.speed,
+            percent: this.percent,
+            direction: this.direction,
+          },
+        })
+      );
+    }
   }
 
-  // renderWebflow(time) {}
+  renderWebflow(time) {}
 }
 
 /*  --- Init */
@@ -142,4 +158,14 @@ const params = evalConfig("[data-id-scroll]", {
 });
 
 window.SScroll = new Scroll(params);
-// window.SScroll.renderWebflow = (time) => {};
+
+/* ---- Events */
+
+// window.addEventListener("sscroll", (e) => {
+//   console.log(e.detail);
+// });
+
+/* ---- Callbacks */
+
+// window.SScroll.call.stop()
+// window.SScroll.call.start()
